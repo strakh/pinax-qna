@@ -26,9 +26,11 @@ urlpatterns = patterns('',
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
     (r'^openid/(.*)', PinaxConsumer()),
-    (r'^profiles/', include('basic_profiles.urls')),
+#    (r'^profiles/', include('basic_profiles.urls')),
+    (r'^profiles/', include('profile.urls')),
     (r'^notices/', include('notification.urls')),
     (r'^announcements/', include('announcements.urls')),
+    (r'^answers/', include('quanda.urls')),
     
     (r'^admin/(.*)', admin.site.root),
 )

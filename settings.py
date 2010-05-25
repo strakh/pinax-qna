@@ -139,10 +139,12 @@ INSTALLED_APPS = (
     'staticfiles',
     
     # internal (for now)
-    'basic_profiles',
+#    'basic_profiles',
+    'profile',
     'account',
     'signup_codes',
     'about',
+    'quanda',
     'django.contrib.admin',
 
 )
@@ -160,7 +162,8 @@ MARKUP_CHOICES = (
 )
 WIKI_MARKUP_CHOICES = MARKUP_CHOICES
 
-AUTH_PROFILE_MODULE = 'basic_profiles.Profile'
+#AUTH_PROFILE_MODULE = 'basic_profiles.Profile'
+AUTH_PROFILE_MODULE = 'profile.Profile'
 NOTIFICATION_LANGUAGE_MODULE = 'account.Account'
 
 ACCOUNT_OPEN_SIGNUP = True
