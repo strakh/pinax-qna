@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'ajax_validation',
     'uni_form',
     'staticfiles',
+    'flag',
     
     # internal (for now)
 #    'basic_profiles',
