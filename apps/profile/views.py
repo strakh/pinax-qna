@@ -11,8 +11,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from profile.models import Profile
-from profile.forms import ProfileForm
+from profile.forms import ProfileForm, RepForm
 
+TINY_MCE_JS_LOCATION = getattr(settings, 'TINY_MCE_JS_LOCATION', 'http://teebes.com/static/js/tiny_mce/tiny_mce.js')
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -58,7 +59,7 @@ def profile(request, username, template_name="profile/profile.html"):
 
 
 @login_required
-def profile_edit(request, form_class=ProfileForm, **kwargs):
+def profile_edit(request, **kwargs):
     
     template_name = kwargs.get("template_name", "profile/profile_edit.html")
     
@@ -71,16 +72,29 @@ def profile_edit(request, form_class=ProfileForm, **kwargs):
     profile = request.user.get_profile()
     
     if request.method == "POST":
-        profile_form = form_class(request.POST, instance=profile)
-        if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            return HttpResponseRedirect(reverse("profile_detail", args=[request.user.username]))
+        if request.POST.has_key('change_rep'):
+            if not request.user.is_staff:
+                return HttpRepsonse("Unauthorized")
+            rep_form = RepForm(request.POST)
+            if rep_form.is_valid():
+                profile.reputation = rep_form.cleaned_data['base_rep']
+                profile.save()
+                return HttpResponseRedirect(reverse("profile_detail", args=[request.user.username]))
+        else:
+            if not request.user == profile.user:
+                return HttpResponse("Unauthorized")
+            profile_form = ProfileForm(request.POST, instance=profile)
+            if profile_form.is_valid():
+                profile = profile_form.save()
+                return HttpResponseRedirect(reverse("profile_detail", args=[request.user.username]))
+
     else:
-        profile_form = form_class(instance=profile)
+        profile_form = ProfileForm(instance=profile)
+        rep_form = RepForm(initial={'base_rep': profile.reputation})
     
     return render_to_response(template_name, {
         "profile": profile,
         "profile_form": profile_form,
+        "rep_form": rep_form,
+        'tinymce': TINY_MCE_JS_LOCATION,
     }, context_instance=RequestContext(request))
