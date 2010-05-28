@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.humanize',
+    'django.contrib.markup',
     'pinax.templatetags',
     
     # external
@@ -138,7 +139,7 @@ INSTALLED_APPS = (
     'uni_form',
     'staticfiles',
     'flag',
-    
+
     # internal (for now)
 #    'basic_profiles',
     'profile',
@@ -146,6 +147,7 @@ INSTALLED_APPS = (
     'signup_codes',
     'about',
     'quanda',
+    'api',
     'django.contrib.admin',
 
 )

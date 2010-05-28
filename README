@@ -1,0 +1,35 @@
+
+Questions:
+
+GET
+curl -u strakh:1234 "http://127.0.0.1:8000/api/questions/"
+curl -u strakh:1234 "http://127.0.0.1:8000/api/question/1/"
+curl "http://127.0.0.1:8000/api/questions/"
+curl "http://127.0.0.1:8000/api/question/1/"
+
+POST
+curl -u strakh:1234 "http://127.0.0.1:8000/api/questions/" -F "title=is it friday?"
+
+PUT
+curl -u strakh:1234 -H "Accept: application/json" -X PUT "http://127.0.0.1:8000/api/question/3/ -d "question_text=Is%20it%20friday?"
+
+DELETE
+curl -u strakh:1234 -X DELETE "http://127.0.0.1:8000/api/question/3/"
+
+
+Answers:
+
+GET
+curl -u strakh:1234 "http://127.0.0.1:8000/api/question/1/answers/"
+curl -u strakh:1234 "http://127.0.0.1:8000/api/answer/4/"
+curl "http://127.0.0.1:8000/api/question/1/answers/"
+curl "http://127.0.0.1:8000/api/answer/4/"
+
+POST
+curl -u strakh:1234 "http://127.0.0.1:8000/api/question/1/answers/" -F "answer_text=16:10"
+
+PUT
+curl -u strakh:1234 -H "Accept: application/json" -X PUT "http://127.0.0.1:8000/api/answer/4/" -d "answer_text=15:26"
+
+DELETE
+curl -u strakh:1234 -X DELETE "http://127.0.0.1:8000/api/answer/4/"
