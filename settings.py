@@ -147,7 +147,6 @@ INSTALLED_APPS = (
     'signup_codes',
     'about',
     'quanda',
-    'api',
     'django.contrib.admin',
 
 )

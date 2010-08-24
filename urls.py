@@ -32,7 +32,6 @@ urlpatterns = patterns('',
     (r'^announcements/', include('announcements.urls')),
     (r'^answers/', include('quanda.urls')),
     (r'^flag/', include('flag.urls')),
-    (r'^api/', include('api.urls')),
     
     (r'^admin/(.*)', admin.site.root),
 )
