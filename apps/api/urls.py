@@ -3,7 +3,7 @@ from piston.resource import Resource
 from piston.doc import documentation_view
 from piston.authentication import HttpBasicAuthentication
 
-from api.handlers import QuestionHandler, AnswerHandler
+from handlers import QuestionHandler, AnswerHandler
 
 auth = HttpBasicAuthentication(realm='Quanda API')
 questions = Resource(handler=QuestionHandler, authentication=auth)

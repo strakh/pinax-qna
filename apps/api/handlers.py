@@ -28,8 +28,5 @@ class AnswerHandler(BaseHandler):
         except ObjectDoesNotExist:
             return rc.BAD_REQUEST
         request.data.update({'question': question, 'author': request.user})
-        print request.data
-        print kwargs
-        print args
         super(AnswerHandler, self).create(request, *args, **kwargs)
 
